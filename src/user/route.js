@@ -14,7 +14,7 @@ router.get('/verify-user',userController.verifyUser)
 
 router.post('/create-user',userController.createUser)
 router.post('/login',userController.login)
-router.post('/send-otp',hitLimiter,userController.sendOTP)
+router.post('/send-otp',userController.sendOTP)
 router.post('/verify-otp',userController.verifyOtp)
 
 //for forgot password we need mail verification

@@ -72,7 +72,7 @@ class User{
     }
     createUser = async (req, res) => {
         try {
-          const { email } = req.body.formData;
+          const { email } = req.body;
           // Check if user already exists
           const user = await userModel.findOne({
             where: { email },
@@ -83,7 +83,8 @@ class User{
           }
       
           // Create the user
-          const newUser = await userModel.create(req.body.formData);
+          const newUser = await userModel.create(req.body);
+         
           const data = {
             email:newUser.email,
             useruuid: newUser.useruuid,
@@ -112,7 +113,7 @@ class User{
       where: { email },
     });
 
-    console.log(user)
+    
     
     // If user doesn't exist
     if (!user) {
