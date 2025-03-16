@@ -66,7 +66,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["Free member", "VIP"],
     default: "Free member",
-  }
+  },
+  rating:{
+    type:Number,
+    default:250,
+  },
+  starRating:{
+    type:Number,
+    default:0,
+  },
+  totalCalls:{
+    type:Number,
+    default:0,
+  },
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

@@ -339,7 +339,11 @@ class User {
       phoneNumber: user.phoneNumber,
       country: user.country,
       dob: user.dob, 
-      gender: user.gender
+      gender: user.gender,
+      rating :user.rating,
+      totalCalls :user.totalCalls,
+      isActive :user.isActive,
+      starRating:user.starRating,
     }
 
     return res.status(200).json({ user });
@@ -474,6 +478,55 @@ class User {
       return res.status(500).json({ success: false, message: "Error verifying OTP", error: error.message });
     }
   };
+
+
+  feedback =async(req,res)=>{
+    try {
+        const { userUuid, type } = req.body;
+
+        if (!userUuid || !type) {
+            return res.status(400).json({ message: "userUuid and feedback type are required." });
+        }
+
+        const user = await userModel.findOne({ userUuid });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
+        }
+
+        // If feedback is positive, increase rating and total calls
+        if (type === "like") {
+            user.rating += 5; // Increment rating
+            user.totalCalls += 1;
+        } else {
+            user.totalCalls += 1;
+            user.rating -= 5; 
+            user.isActive = false;
+        }
+
+        await user.save();
+
+        setTimeout(async () => {
+            await user.updateOne({ userUuid }, { isActive: true });
+            console.log(`User ${userUuid} has been reactivated.`);
+        }, 10 * 60 * 1000); // 10 minutes
+
+        res.status(200).json({
+            message: "Feedback submitted successfully.",
+            user: {
+                userUuid: user.userUuid,
+                rating: user.rating,
+                totalCalls: user.totalCalls,
+            },
+        });
+    } catch (error) {
+        console.error("Error submitting feedback:", error);
+        res.status(500).json({ message: "Internal Server Error." });
+    }
+};
+
+
+  
 
   // ✅ OAuth User Creation (Google/Facebook)
   createUserOAuth = async (req, res) => {
