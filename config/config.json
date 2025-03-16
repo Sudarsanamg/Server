@@ -1,0 +1,48 @@
+{
+    "development": {
+      "username": "maindb_owner",
+      "password": "sVKSXtZDfb13",
+      "database": "maindb",
+      "host": "ep-bold-base-a5a55lil.us-east-2.aws.neon.tech",
+      "dialect": "postgres",
+      "logging": false,
+      "timezone": "+05:30",
+      "dialectOptions": {
+        "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+        }
+      }
+    },
+    "test": {
+      "username": "maindb_owner",
+      "password": "sVKSXtZDfb13",
+      "database": "maindb",
+      "host": "ep-bold-base-a5a55lil.us-east-2.aws.neon.tech",
+      "dialect": "postgres",
+      "logging": false,
+      "timezone": "+05:30",
+      "dialectOptions": {
+        "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+        }
+      }
+    },
+    "production": {
+      "username": "maindb_owner",
+      "password": "sVKSXtZDfb13",
+      "database": "maindb",
+      "host": "ep-bold-base-a5a55lil.us-east-2.aws.neon.tech",
+      "dialect": "postgres",
+      "logging": false,
+      "timezone": "+05:30",
+      "dialectOptions": {
+        "ssl": {
+          "require": true,
+          "rejectUnauthorized": false
+        }
+      }
+    }
+  }
+  
