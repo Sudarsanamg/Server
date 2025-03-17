@@ -22,6 +22,8 @@ router.post('/create-userVOAuth',userController.createUserOAuth)
 router.post('/login',userController.login)
 router.post('/send-otp',userController.sendOTP)
 router.post('/verify-otp',userController.verifyOtp)
+router.post('/updateLanguage',userController.updateLanguage)
+
 // router.post("/feedback", async (req, res) => {
 //     try {
 //         const { userUuid, type } = req.body;
