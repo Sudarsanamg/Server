@@ -79,6 +79,11 @@ const userSchema = new mongoose.Schema({
     type:Number,
     default:0,
   },
+  language:{
+    type:String,
+    enum : ['tamil', 'english', 'hindi' , 'japan', 'korean'] ,
+    default : 'english'
+  }
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

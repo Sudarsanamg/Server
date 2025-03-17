@@ -344,6 +344,7 @@ class User {
       totalCalls :user.totalCalls,
       isActive :user.isActive,
       starRating:user.starRating,
+      language:user.language,
     }
 
     return res.status(200).json({ user });
@@ -479,6 +480,25 @@ class User {
     }
   };
 
+  updateLanguage = async (req, res) => {
+    try {
+      const {uuid , language} = req.body;
+      console.log(req.body)
+
+
+      const user = await userModel.findOne({ userUuid:uuid });
+
+      user.updateOne({ language }).then(() => {
+        res.status(200).json({ message: "Language updated successfully" });
+      })
+
+
+
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({ message: "Error updating language", error: error.message });
+    }
+  }
 
   feedback =async(req,res)=>{
     try {
